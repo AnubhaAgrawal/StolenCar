@@ -1,7 +1,68 @@
 .App {
   text-align: center;
 }
+.form{
+  text-align: center;
+  border: #282c34 solid;
+  border-radius: 2%;
+}
+.lab{
+  color: blue;
+  
+}
+input[type=text] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 3px solid #ccc;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  outline: none;
+}
+.btn{
+  background-color: #221ee6;
+  border-radius: 40%;
+  color: white;
+  padding: 15px;
+  font-size: 16px;
+}
+.btn1{
+  text-align: center;
+  background-color: #221ee6;
+  border-radius: 40%;
+  color: white;
+  padding: 10px;
+  font-size: 16px;
+}
+ul {
+  background: #221ee6;
+  padding: 20px;
+}
+ul li {
+  background: #cce5ff;
+  margin: 5px;
+}
 
+.header {
+  padding: 20px;
+  text-align: center;
+  background: #221ee6;
+  color: white;
+  font-size: 20px;
+}
+input[type=text]:focus {
+  border: 3px solid #555;
+}
+input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
