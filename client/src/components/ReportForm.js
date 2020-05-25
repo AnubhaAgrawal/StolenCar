@@ -15,6 +15,7 @@ function ReportForm() {
     const [reportBody, SetReport] = useState({username: '', age: '', LicenceNumber: '', UserID:'', ProofofOwnerShip:'', VIN: '', status:false });
     const [userId, SetId] = useState(1);
     const [userId1, SetId1] = useState(1);
+    const [userId2, SetId2] = useState(1);
     const [data, setData] = useState([]);
     const [police, setPolice] = useState({username: '', assigntask: false});
     const [getpolice, getPolice] = useState([]);
@@ -35,8 +36,8 @@ function ReportForm() {
         }
         //console.log("Hi you submit ");
         //console.log(reportBody);
-        reportBody.status = false;
-        let t;
+       
+        let t = null;
 
         getpolice.find(element=>{
           if(!element.assigntask){
@@ -45,6 +46,13 @@ function ReportForm() {
 
           }
         })
+        if(t){
+          console.log(t);
+          reportBody.status = true;
+          SetReport({...reportBody, status: true})
+          console.log(reportBody);
+        }
+
 
         Axios({
           url: '/api/update ',
@@ -105,9 +113,14 @@ function ReportForm() {
 
     const handleSubmit3 = (event) =>{
       event.preventDefault();
+      if(userId2===1){
+        SetId2(0);
+      }else{
+        SetId2(1);
+      }
       console.log("Hi you submit ");
       console.log(police);
-      let t;
+      let t=null;
       getpolice.find(element=>{
         if(element.username== police.username){
           console.log(element._id);
@@ -115,6 +128,39 @@ function ReportForm() {
 
         }
       })
+   /*  let t1 = null
+      if(t){
+        data.find(element=>{
+          if(!element.status){
+            console.log("Element Id: ",element._id);
+            t1 ={...element, status:true, _id: element._id};
+            console.log(t1);
+            t = null;
+  
+          }
+        })
+
+      }
+      if(t1){
+        Axios({
+          url: '/api/xyz ',
+          method: 'POST',
+          data: t1
+      })
+      .then(()=>{
+  
+          console.log('Data has been sent to the server');
+          
+      })
+      .catch(()=>{
+       
+          console.log('Some error');
+      });
+      }
+      */
+
+      if(t){
+      
       Axios({
         url: '/api/update ',
         method: 'POST',
@@ -129,6 +175,9 @@ function ReportForm() {
      
         console.log('Some error');
     });
+
+  }
+
      
   }
   
@@ -156,7 +205,7 @@ function ReportForm() {
           };
        
           fetchData1();
-      }, [userId, userId1]);
+      }, [userId, userId1, userId2]);
   
       const classes = useStyles();
       const [anchorEl, setAnchorEl] = React.useState(null);
@@ -256,7 +305,7 @@ function ReportForm() {
         <Typography className={classes.typography}>   {data.length!==0 && data.map((post, index) =>{
                 return(<div key = {index}>
                    
-                <h3>{index} UserName- {post.username}, UserId- {post.UserID}, LicenceNumber- {post.LicenceNumber}</h3>
+                <h3>{index} UserName- {post.username}, UserId- {post.UserID}, LicenceNumber- {post.LicenceNumber}, status- {post.status? "Assigned": "Not Assigned"}</h3>
                 </div>)
             })}
 </Typography>

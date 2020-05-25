@@ -100,6 +100,15 @@ router.post('/update', (req, res) =>{
             });
         }
     });
+
+    router.post('/xyz', (req, res) =>{
+        console.log('Body Reportcvvvvvvvvvvvvvvvvv : ', req.body._id);
+    
+      
+            res.json({msg: ' Your Data has been update'});
+        });
+
+ 
   
  
 });
