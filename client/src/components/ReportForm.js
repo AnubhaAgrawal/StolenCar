@@ -93,6 +93,39 @@ function ReportForm() {
         }else{
           SetId1(1);
         }
+
+       let t1 = null;
+        
+          data.find(element=>{
+            if(!element.status){
+              console.log("Element Id: ",element._id);
+              t1 ={...element, status:true, _id: element._id};
+              console.log("Value: ", t1);
+              police.assigntask = true;
+    
+            }
+          })
+  
+     
+       
+        if(t1){
+          Axios({
+            url: '/api/change ',
+            method: 'POST',
+            data: t1
+        })
+        .then(()=>{
+    
+            console.log('Data has been sent to the server');
+            
+        })
+        .catch(()=>{
+         
+            console.log('Some error');
+        });
+    
+        }
+
         Axios({
             url: '/api/police ',
             method: 'POST',
@@ -118,6 +151,8 @@ function ReportForm() {
       }else{
         SetId2(1);
       }
+
+      
       console.log("Hi you submit ");
       console.log(police);
       let t=null;
@@ -128,22 +163,24 @@ function ReportForm() {
 
         }
       })
-   /*  let t1 = null
+     let t1 = null
       if(t){
         data.find(element=>{
           if(!element.status){
             console.log("Element Id: ",element._id);
             t1 ={...element, status:true, _id: element._id};
-            console.log(t1);
+            console.log("Value: ", t1);
+            //console.log(t1);
             t = null;
   
           }
         })
 
       }
+     
       if(t1){
         Axios({
-          url: '/api/xyz ',
+          url: '/api/change ',
           method: 'POST',
           data: t1
       })
@@ -156,9 +193,8 @@ function ReportForm() {
        
           console.log('Some error');
       });
+  
       }
-      */
-
       if(t){
       
       Axios({
@@ -373,8 +409,9 @@ function ReportForm() {
       </div>
 
       <div>
+        <h5>If car is Found by any of the police office give name of it and assign new report if it was not prevously assigned or if all reports are already assigned then wait for another report to come</h5>
      <Button aria-describedby={id} variant="contained" color="primary" onClick={handleClick3}>
-     When the Police find a car 
+     Which Police officer find a car 
       </Button>
       <Popover
         id={id3}

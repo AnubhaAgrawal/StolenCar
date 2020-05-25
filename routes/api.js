@@ -100,16 +100,28 @@ router.post('/update', (req, res) =>{
             });
         }
     });
-
-    router.post('/xyz', (req, res) =>{
-        console.log('Body Reportcvvvvvvvvvvvvvvvvv : ', req.body._id);
-    
-      
-            res.json({msg: ' Your Data has been update'});
-        });
-
  
-  
+});
+
+router.post('/change', (req, res) =>{
+    console.log('Body: ', req.body);
+
+    Report.findById(req.body._id, function(err, todo) {
+        console.log(todo);
+        if (!todo)
+            res.status(404).send("data is not found");
+        else{
+            todo.status = req.body.status;
+           
+            todo.save().then(todo => {
+                res.json({msg: ' Your Data has been update'});
+
+            })
+            .catch(err => {
+                res.status(400).send("Update not possible");
+            });
+        }
+    });
  
 });
 module.exports = router;
